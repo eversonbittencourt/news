@@ -19,8 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/news/', 'ControllerNews@getPosts');
-Route::get('/news/{id}', 'ControllerNews@getPost');
-	
+Route::get('/news/{page?}/', 'ControllerNews@getPosts')
+		->name('consultPosts')
+		->where('page', '[0-9]+');
+		
+Route::get('/news/{id}/', 'ControllerNews@getPost')
+		->name('consultPost');
+
 
 	
